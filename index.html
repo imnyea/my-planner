@@ -33,7 +33,7 @@
             padding: 20px;
             margin: 0;
             transition: background 0.3s ease;
-            -webkit-user-select: none; /* 아이폰 터치 시 텍스트 선택 방지 */
+            -webkit-user-select: none;
         }
 
         .main-canvas {
@@ -48,94 +48,28 @@
             border-radius: var(--radius);
         }
 
-        .header-container {
-            text-align: center;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .header-container { text-align: center; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; }
+        .header-title { font-size: clamp(24px, 5vw, 36px); font-weight: 900; cursor: pointer; padding: 5px 15px; border-radius: 10px; border: 2px dashed transparent; }
+        .header-title:hover { background: rgba(0,0,0,0.05); border-color: var(--text-main); }
 
-        .header-title {
-            font-size: clamp(24px, 5vw, 36px);
-            font-weight: 900;
-            cursor: pointer;
-            padding: 5px 15px;
-            border-radius: 10px;
-            border: 2px dashed transparent;
-        }
-
-        .header-title:hover {
-            background: rgba(0,0,0,0.05);
-            border-color: var(--text-main);
-        }
-
-        /* Selection Grid */
-        .selection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .select-box {
-            border: 2px solid var(--text-main);
-            padding: 12px;
-            border-radius: 15px;
-            background: var(--bg-canvas);
-        }
-
+        .selection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .select-box { border: 2px solid var(--text-main); padding: 12px; border-radius: 15px; background: var(--bg-canvas); }
         .select-box h4 { margin: 0 0 10px 0; font-size: 14px; opacity: 0.7; }
         .btn-group { display: flex; flex-wrap: wrap; gap: 5px; }
 
-        button.subject-btn {
-            padding: 6px 10px;
-            border: 1.5px solid var(--text-main);
-            background: var(--bg-canvas);
-            color: var(--text-main);
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 6px;
-        }
+        button.subject-btn { padding: 6px 10px; border: 1.5px solid var(--text-main); background: var(--bg-canvas); color: var(--text-main); cursor: pointer; font-size: 11px; font-weight: bold; border-radius: 6px; }
         button.subject-btn.active { background: var(--text-main); color: var(--bg-canvas); }
 
-        .after-school-info {
-            background: var(--soft-blue);
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 11px;
-            border: 1px solid var(--accent-blue);
-            margin-bottom: 5px;
-            position: relative;
-        }
+        .after-school-info { background: var(--soft-blue); padding: 8px; border-radius: 8px; font-size: 11px; border: 1px solid var(--accent-blue); margin-bottom: 5px; position: relative; }
         .after-school-del { color: var(--accent-red); cursor: pointer; float: right; font-weight: bold; }
 
-        /* Main Layout */
-        .content-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        @media (min-width: 1024px) {
-            .content-layout { grid-template-columns: 2.8fr 1.2fr; }
-        }
+        .content-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 1024px) { .content-layout { grid-template-columns: 2.8fr 1.2fr; } }
 
-        .view-panel, .task-panel {
-            border: var(--box-border);
-            border-radius: var(--radius);
-            padding: 20px;
-            background: var(--bg-canvas);
-            min-height: 500px;
-        }
-
+        .view-panel, .task-panel { border: var(--box-border); border-radius: var(--radius); padding: 20px; background: var(--bg-canvas); min-height: 500px; }
         .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .toggle-view-btn { background: var(--bg-canvas); color: var(--text-main); border: 2px solid var(--text-main); padding: 8px 16px; font-weight: bold; cursor: pointer; border-radius: 20px; }
 
-        .toggle-view-btn {
-            background: var(--bg-canvas); color: var(--text-main); border: 2px solid var(--text-main); padding: 8px 16px; font-weight: bold; cursor: pointer; border-radius: 20px;
-        }
-
-        /* Timetable */
         .timetable-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .timetable { width: 100%; border-collapse: collapse; min-width: 600px; }
         .timetable th, .timetable td { border: 1.5px solid var(--text-main); padding: 10px 5px; text-align: center; height: 70px; }
@@ -145,13 +79,6 @@
         .cell-room { font-size: 11px; opacity: 0.7; }
         .cell-task-tag { background: var(--highlight); color: #000; font-size: 10px; margin-top: 5px; border: 1px solid var(--text-main); border-radius: 4px; padding: 2px; font-weight: bold; }
 
-        /* Calendar */
-        .month-selector-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .month-select-dropdown {
-            background: var(--bg-canvas); border: 3px solid var(--text-main); border-radius: 12px; padding: 8px 15px; font-weight: 900; font-size: 20px; color: var(--text-main); cursor: pointer; box-shadow: 4px 4px 0px var(--text-main);
-        }
-        .today-btn { background: var(--text-main); color: var(--bg-canvas); border: none; border-radius: 8px; padding: 10px 20px; font-weight: bold; cursor: pointer; }
-
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         .cal-header { text-align: center; font-weight: bold; padding: 10px; background: rgba(0,0,0,0.05); border: 1.5px solid var(--text-main); }
         .cal-day { min-height: 110px; border: 1.5px solid var(--text-main); padding: 8px; font-size: 13px; position: relative; }
@@ -159,54 +86,34 @@
         .cal-date { font-weight: bold; margin-bottom: 8px; display: block; }
         .cal-task-item { font-size: 10px; background: var(--highlight); color: #000; border: 1px solid var(--text-main); margin-bottom: 3px; padding: 3px; border-radius: 4px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Input Form */
-        .input-ui label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; }
         .input-ui input, .input-ui select { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid var(--text-main); border-radius: 10px; box-sizing: border-box; background: var(--bg-canvas); color: var(--text-main); font-size: 14px; }
-        
-        .add-btn { width: 100%; padding: 15px; background: var(--text-main); color: var(--bg-canvas); border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: transform 0.1s; }
-        .add-btn:active { transform: scale(0.98); }
-        .cancel-btn { background: #666; margin-top: 10px; }
-
+        .add-btn { width: 100%; padding: 15px; background: var(--text-main); color: var(--bg-canvas); border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; }
         .task-card { border: 2px solid var(--text-main); padding: 15px; border-radius: 12px; margin-top: 15px; position: relative; background: rgba(0,0,0,0.02); }
-        .action-btns { position: absolute; top: 12px; right: 12px; display: flex; gap: 12px; }
-        .card-icon-btn { cursor: pointer; border: none; background: none; font-size: 18px; font-weight: bold; }
-        
         .hidden { display: none !important; }
 
         /* Theme Panel */
-        .theme-fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--text-main); color: var(--bg-canvas); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; border: 2px solid var(--bg-canvas); }
+        .theme-fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--text-main); color: var(--bg-canvas); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; z-index: 100; border: 2px solid var(--bg-canvas); }
         .theme-panel { position: fixed; bottom: 100px; right: 30px; width: 320px; background: #fff; border: 3px solid #000; border-radius: 20px; padding: 25px; box-shadow: 10px 10px 0px #000; z-index: 101; display: none; }
         .theme-panel.active { display: block; }
 
-        .theme-item { margin-bottom: 20px; }
-        .theme-item label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
-        .color-input-row { display: flex; gap: 10px; align-items: center; }
-        .color-picker { width: 45px; height: 45px; border: 2px solid #000; border-radius: 8px; cursor: pointer; padding: 0; background: none; }
-        .hex-input { flex-grow: 1; padding: 8px; border: 2px solid #000; border-radius: 8px; font-family: monospace; font-size: 14px; text-transform: uppercase; }
-
-        /* Modal */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 200; }
-        .modal-content { background: #fff; border: 3px solid #000; padding: 30px; border-radius: 25px; width: 90%; max-width: 400px; }
-
-        /* Auth Status Bar */
-        .auth-status { margin-top: 20px; font-size: 12px; opacity: 0.6; text-align: center; width: 100%; }
-
-        /* Loading Overlay */
         #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #000; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 200; }
+        .modal-content { background: #fff; border: 3px solid #000; padding: 30px; border-radius: 25px; width: 90%; max-width: 400px; }
     </style>
 </head>
 <body>
 
 <div id="loading-overlay">
     <div class="spinner"></div>
-    <p>클라우드 데이터를 동기화 중입니다...</p>
+    <p>데이터를 불러오는 중...</p>
 </div>
 
-<div class="main-canvas" id="main-canvas">
+<div class="main-canvas">
     <div class="header-container">
-        <div id="main-title" class="header-title">플래너 로딩 중...</div>
+        <div id="main-title" class="header-title" onclick="state.title=prompt('제목 변경:', state.title)||state.title; renderAll();">수행평가 안내</div>
     </div>
 
     <div class="selection-grid">
@@ -229,116 +136,53 @@
                 <h3 id="view-title" style="margin:0;">⏰ 주간 시간표</h3>
                 <button class="toggle-view-btn" onclick="toggleView()">월간/주간 전환</button>
             </div>
-            
             <div id="weekly-view" class="timetable-wrapper">
                 <table class="timetable">
                     <thead><tr><th class="period-col"></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr></thead>
                     <tbody id="timetable-body"></tbody>
                 </table>
             </div>
-            
             <div id="monthly-view" class="hidden">
-                <div class="month-selector-container">
-                    <select id="single-month-select" class="month-select-dropdown" onchange="renderCalendar()"></select>
-                    <button class="today-btn" onclick="goToToday()">오늘</button>
-                </div>
                 <div class="calendar-grid" id="calendar-body"></div>
             </div>
         </div>
 
         <div class="task-panel">
-            <div class="input-ui" id="task-form">
-                <h3 id="form-title">📝 일정 등록</h3>
-                <label>과목</label>
+            <div class="input-ui">
+                <h3>📝 일정 등록</h3>
                 <select id="task-sub-select" onchange="updatePeriods()"><option value="">과목 선택</option></select>
-                <label>활동 내용</label>
-                <input type="text" id="task-title" placeholder="내용 입력">
-                <label>마감 날짜 (MM/DD)</label>
-                <input type="text" id="task-date" placeholder="예: 4/15">
-                <label>진행 일시</label>
-                <select id="task-period-select" disabled><option value="">과목을 먼저 선택하세요</option></select>
-                <button class="add-btn" id="submit-btn" onclick="saveTask()">등록하기</button>
-                <button class="add-btn cancel-btn hidden" id="cancel-btn" onclick="cancelEdit()">취소</button>
+                <input type="text" id="task-title" placeholder="활동 내용">
+                <input type="text" id="task-date" placeholder="마감 날짜 (MM/DD)">
+                <select id="task-period-select" disabled><option>과목 먼저 선택</option></select>
+                <button class="add-btn" onclick="saveTask()">등록하기</button>
             </div>
             <div id="task-list"></div>
         </div>
     </div>
 </div>
 
-<div class="auth-status" id="auth-info">연결 상태 확인 중...</div>
-
-<!-- Theme Button & Panel -->
 <div class="theme-fab" onclick="document.getElementById('theme-panel').classList.toggle('active')">🎨</div>
 <div class="theme-panel" id="theme-panel">
     <h3>✨ 테마 설정</h3>
-    <div class="theme-item">
-        <label>배경 색상 (Canvas)</label>
-        <div class="color-input-row">
-            <input type="color" id="picker-bg" class="color-picker" oninput="updateColorFromPicker('bg', this.value)">
-            <input type="text" id="hex-bg" class="hex-input" placeholder="#FFFFFF" oninput="updateColorFromHex('bg', this.value)">
-        </div>
-    </div>
-    <div class="theme-item">
-        <label>강조 색상 (Highlight)</label>
-        <div class="color-input-row">
-            <input type="color" id="picker-high" class="color-picker" oninput="updateColorFromPicker('high', this.value)">
-            <input type="text" id="hex-high" class="hex-input" placeholder="#FFFF00" oninput="updateColorFromHex('high', this.value)">
-        </div>
-    </div>
-    <div class="theme-item">
-        <label>텍스트 색상 (Text)</label>
-        <div class="color-input-row">
-            <input type="color" id="picker-text" class="color-picker" oninput="updateColorFromPicker('text', this.value)">
-            <input type="text" id="hex-text" class="hex-input" placeholder="#000000" oninput="updateColorFromHex('text', this.value)">
-        </div>
-    </div>
-    <button class="add-btn" onclick="document.getElementById('theme-panel').classList.remove('active')">설정 완료</button>
+    <label>배경 색상</label>
+    <input type="color" oninput="updateTheme('bg', this.value)" style="width:100%; height:40px; margin-bottom:10px;">
+    <label>강조 색상</label>
+    <input type="color" oninput="updateTheme('high', this.value)" style="width:100%; height:40px; margin-bottom:10px;">
+    <button class="add-btn" onclick="document.getElementById('theme-panel').classList.remove('active')">닫기</button>
 </div>
 
-<!-- After School Modal -->
 <div id="after-modal" class="modal hidden">
     <div class="modal-content">
-        <h3>방과후 활동 추가</h3>
-        <input type="text" id="after-name" placeholder="활동 명칭" style="width:100%; padding:10px; margin-bottom:10px; border:2px solid #000; border-radius:8px;">
-        <input type="text" id="after-room" placeholder="교실 위치" style="width:100%; padding:10px; margin-bottom:10px; border:2px solid #000; border-radius:8px;">
-        <div id="after-days-group" style="margin-bottom:15px; display: flex; flex-wrap: wrap; gap: 10px;">
-            <label><input type="checkbox" value="월"> 월</label>
-            <label><input type="checkbox" value="화"> 화</label>
-            <label><input type="checkbox" value="수"> 수</label>
-            <label><input type="checkbox" value="목"> 목</label>
-            <label><input type="checkbox" value="금"> 금</label>
-        </div>
-        <div style="display:flex; gap:10px;">
-            <button class="add-btn" onclick="addAfterSchool()" style="background:var(--success); flex: 1;">저장</button>
-            <button class="add-btn" onclick="closeAfterModal()" style="background:#666; flex: 1;">취소</button>
-        </div>
+        <h3>방과후 추가</h3>
+        <input type="text" id="after-name" placeholder="활동명">
+        <input type="text" id="after-room" placeholder="교실">
+        <button class="add-btn" onclick="addAfter()">저장</button>
+        <button class="add-btn" onclick="document.getElementById('after-modal').classList.add('hidden')" style="background:#666; margin-top:5px;">취소</button>
     </div>
 </div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-    // --- Configuration & Constants ---
-    // 주의: Firebase 설정은 개인의 설정값으로 채워져야 작동합니다.
-    const firebaseConfig = {
-        apiKey: "",
-        authDomain: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: "",
-        appId: ""
-    };
-    
-    // 환경 변수 연동 로직 (필요 시)
-    const finalConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
-    const app = initializeApp(finalConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const appIdStr = typeof __app_id !== 'undefined' ? __app_id : 'smart-planner-01';
-
-    const days = ["월", "화", "수", "목", "금"];
+    // --- 기본 데이터 ---
     const subjectGroups = {
         "A": [{n:"심화 국어", r:"3-6"}, {n:"여행지리", r:"3-2"}, {n:"생명과학II", r:"3-8"}, {n:"지구과학II", r:"지구과학실"}, {n:"인공지능 기초", r:"시리우스"}],
         "B": [{n:"심화 국어", r:"3-4"}, {n:"확률과 통계", r:"3-6"}, {n:"여행지리", r:"3-9"}, {n:"정보과학", r:"아크로폴리스"}],
@@ -348,114 +192,50 @@
         "F": [{n:"심화 수학", r:"3-11"}, {n:"심화 영어", r:"사비오실"}, {n:"사회문제 탐구", r:"3-2"}, {n:"여행지리", r:"3-6"}, {n:"생명과학II", r:"3-9"}, {n:"중국 문화", r:"3-1"}, {n:"영화 감상과 비평", r:"3-10"}],
         "G": [{n:"생활과 윤리", r:"3-3"}, {n:"한국지리", r:"3-7"}, {n:"과학과제 연구", r:"라우라실"}, {n:"화학 II", r:"3-9"}]
     };
+
     const baseSchedule = [
         ["독서", "G", "자율/창체", "E", "미적분"], ["B", "D", "운동과 건강", "물리학II", "독서"],
         ["운동과 건강", "물리학II", "C", "F", "G"], ["A", "E", "G", "미적분", "B"],
         ["영어 독해", "미적분", "독서", "A", "D"], ["C", "영어 독해", "F", "영어 독해", "자율/창체"],
-        ["공강", "공강", "물리학II", "공강", "자율/창체"], ["", "", "", "", ""]
-    ];
-    const fixedRooms = { "독서": "3-9", "미적분": "3-9", "물리학II": "3-9", "영어 독해": "3-9", "운동과 건강": "체육관", "공강": "3-9", "자율/창체": "3-9" };
-    const calendarData = [
-        {name:"2026년 1월", last:31, start:4}, {name:"2026년 2월", last:28, start:0},
-        {name:"2026년 3월", last:31, start:0}, {name:"2026년 4월", last:30, start:3},
-        {name:"2026년 5월", last:31, start:5}, {name:"2026년 6월", last:30, start:1},
-        {name:"2026년 7월", last:31, start:3}, {name:"2026년 8월", last:31, start:6},
-        {name:"2026년 9월", last:30, start:2}, {name:"2026년 10월", last:31, start:4},
-        {name:"2026년 11월", last:30, start:0}, {name:"2026년 12월", last:31, start:2}
+        ["공강", "공강", "물리학II", "공강", "자율/창체"]
     ];
 
-    // --- State Management ---
+    const fixedRooms = { "독서": "3-9", "미적분": "3-9", "물리학II": "3-9", "영어 독해": "3-9", "운동과 건강": "체육관", "공강": "3-9", "자율/창체": "3-9" };
+
     let state = {
         subjects: {A:null, B:null, C:null, D:null, E:null, F:null, G:null},
         after: [],
         tasks: [],
         title: "수행평가 안내",
-        theme: {bg:"#ffffff", high:"#ffff00", text:"#000000"},
-        editingId: null,
-        currentUser: null
+        theme: {bg:"#ffffff", high:"#ffff00"}
     };
 
-    const todayDate = new Date();
-    const today = { month: todayDate.getMonth() + 1, date: todayDate.getDate() };
-
-    // --- Initialization ---
-    async function initAuth() {
-        await signInAnonymously(auth).catch(err => {
-            console.error("Auth Error:", err);
-            document.getElementById('auth-info').innerText = "접속 오류. 설정을 확인하세요.";
-        });
-    }
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            state.currentUser = user;
-            document.getElementById('auth-info').innerText = `Cloud Sync Active`;
-            setupRealtimeSync(user.uid);
-        } else {
-            initAuth();
-        }
-    });
-
-    function setupRealtimeSync(uid) {
-        const userDocRef = doc(db, 'artifacts', appIdStr, 'users', uid, 'plannerData', 'main');
-
-        onSnapshot(userDocRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                state.subjects = data.subjects || state.subjects;
-                state.after = data.after || [];
-                state.tasks = data.tasks || [];
-                state.title = data.title || "수행평가 안내";
-                state.theme = data.theme || state.theme;
-                updateUIFromState();
-            } else {
-                saveToCloud();
-            }
-            document.getElementById('loading-overlay').style.display = 'none';
-        }, (error) => {
-            console.error("Sync Error:", error);
-            document.getElementById('loading-overlay').style.display = 'none';
-        });
-    }
-
-    async function saveToCloud() {
-        if (!state.currentUser) return;
-        const userDocRef = doc(db, 'artifacts', appIdStr, 'users', state.currentUser.uid, 'plannerData', 'main');
-        await setDoc(userDocRef, {
-            subjects: state.subjects,
-            after: state.after,
-            tasks: state.tasks,
-            title: state.title,
-            theme: state.theme,
-            updatedAt: Date.now()
-        }).catch(err => console.error("Cloud Save Error:", err));
-    }
-
-    function updateUIFromState() {
-        document.getElementById('main-title').innerText = state.title;
-        applyThemeStyles();
+    // --- 실행 ---
+    window.onload = () => {
         renderAll();
-    }
+        setTimeout(() => document.getElementById('loading-overlay').style.display = 'none', 1000);
+    };
 
     function renderAll() {
+        document.getElementById('main-title').innerText = state.title;
         renderSelection();
         renderTimetable();
-        updateSubDropdown();
         renderTasks();
-        renderCalendar();
+        updateSubDropdown();
         renderAfter();
+        document.documentElement.style.setProperty('--bg-canvas', state.theme.bg);
+        document.documentElement.style.setProperty('--highlight', state.theme.high);
     }
 
     function renderSelection() {
         Object.keys(subjectGroups).forEach(g => {
             const container = document.querySelector(`#group-${g} .btn-group`);
-            if(!container) return;
             container.innerHTML = '';
             subjectGroups[g].forEach(s => {
                 const btn = document.createElement('button');
                 btn.className = `subject-btn ${state.subjects[g]?.n === s.n ? 'active' : ''}`;
                 btn.innerText = s.n;
-                btn.onclick = () => { state.subjects[g] = s; saveToCloud(); };
+                btn.onclick = () => { state.subjects[g] = s; renderAll(); };
                 container.appendChild(btn);
             });
         });
@@ -470,152 +250,67 @@
             row.forEach((cell, d) => {
                 let sub = cell;
                 let room = fixedRooms[cell] || (state.subjects[cell] ? state.subjects[cell].r : "");
+                if(state.subjects[cell]) sub = state.subjects[cell].n;
                 
-                if(p === 7) {
-                    const as = state.after.find(a => a.days.includes(days[d]));
-                    if(as) { sub = as.name; room = as.room; } else { sub = ""; room = ""; }
-                } else if(state.subjects[cell]) {
-                    sub = state.subjects[cell].n;
-                }
-
-                const task = state.tasks.find(t => t.sub === sub && t.period.includes(days[d]) && t.period.includes((p+1)+"교시"));
-                const td = document.createElement('td');
-                td.innerHTML = `<span class="cell-sub">${sub}</span><span class="cell-room">${room}</span>${task?`<div class="cell-task-tag">${task.title}</div>`:""}`;
-                tr.appendChild(td);
+                const task = state.tasks.find(t => t.sub === sub);
+                tr.innerHTML += `<td><span class="cell-sub">${sub}</span><span class="cell-room">${room}</span>${task?`<div class="cell-task-tag">${task.title}</div>`:""}</td>`;
             });
             body.appendChild(tr);
         });
     }
 
-    function updateSubDropdown() {
-        const sel = document.getElementById('task-sub-select');
-        const current = sel.value;
-        sel.innerHTML = '<option value="">과목 선택</option>';
-        Object.keys(fixedRooms).forEach(s => sel.innerHTML += `<option value="${s}">${s}</option>`);
-        Object.keys(state.subjects).forEach(g => { if(state.subjects[g]) sel.innerHTML += `<option value="${state.subjects[g].n}">${state.subjects[g].n}</option>`; });
-        state.after.forEach(a => sel.innerHTML += `<option value="${a.name}">${a.name}</option>`);
-        sel.value = current;
+    function renderAfter() {
+        const div = document.getElementById('after-school-display');
+        div.innerHTML = '';
+        state.after.forEach((a, i) => {
+            div.innerHTML += `<div class="after-school-info"><span class="after-school-del" onclick="state.after.splice(${i},1);renderAll();">×</span><b>${a.name}</b> [${a.room}]</div>`;
+        });
+        div.innerHTML += `<button class="subject-btn" style="width:100%; border:2px dashed #000;" onclick="document.getElementById('after-modal').classList.remove('hidden')">+ 추가</button>`;
     }
+
+    window.updatePeriods = () => {
+        const pSel = document.getElementById('task-period-select');
+        pSel.disabled = false;
+        pSel.innerHTML = `<option>1교시</option><option>2교시</option><option>3교시</option><option>4교시</option><option>5교시</option><option>6교시</option><option>7교시</option>`;
+    };
+
+    window.saveTask = () => {
+        const sub = document.getElementById('task-sub-select').value;
+        const title = document.getElementById('task-title').value;
+        const date = document.getElementById('task-date').value;
+        if(sub && title) {
+            state.tasks.push({ sub, title, date });
+            renderAll();
+        }
+    };
 
     function renderTasks() {
         const list = document.getElementById('task-list');
         list.innerHTML = '<h4>📌 일정 목록</h4>';
         state.tasks.forEach(t => {
-            const div = document.createElement('div');
-            div.className = 'task-card';
-            div.innerHTML = `<div class="action-btns"><span class="card-icon-btn" style="color:blue" onclick="editTask(${t.id})">✎</span><span class="card-icon-btn" style="color:red" onclick="deleteTask(${t.id})">×</span></div><small>${t.sub}</small><div><b>${t.title}</b></div><small>${t.date || '날짜없음'} | ${t.period}</small>`;
-            list.appendChild(div);
+            list.innerHTML += `<div class="task-card"><b>${t.sub}</b>: ${t.title} (${t.date})</div>`;
         });
     }
 
-    function renderCalendar() {
-        const mSelect = document.getElementById('single-month-select');
-        if(mSelect.innerHTML === "") calendarData.forEach((m, i) => mSelect.innerHTML += `<option value="${i}" ${i===(today.month-1)?'selected':''}>${m.name}</option>`);
-        const mIdx = parseInt(mSelect.value);
-        const m = calendarData[mIdx];
-        const body = document.getElementById('calendar-body');
-        body.innerHTML = '';
-        ["일","월","화","수","목","금","토"].forEach(d => body.innerHTML += `<div class="cal-header">${d}</div>`);
-        for(let i=0; i<m.start; i++) body.innerHTML += `<div class="cal-day" style="opacity:0.2"></div>`;
-        for(let d=1; d<=m.last; d++) {
-            const dateStr = (mIdx+1) + "/" + d;
-            const dTasks = state.tasks.filter(t => t.date === dateStr || t.date === `0${dateStr}`);
-            const isToday = (today.month === mIdx+1 && today.date === d);
-            body.innerHTML += `<div class="cal-day ${isToday?'today-highlight':''}">
-                <span class="cal-date">${d}${isToday?' (오늘)':''}</span>
-                ${dTasks.map(t => `<div class="cal-task-item">${t.sub}</div>`).join('')}
-            </div>`;
-        }
+    function updateSubDropdown() {
+        const sel = document.getElementById('task-sub-select');
+        sel.innerHTML = '<option value="">과목 선택</option>';
+        Object.keys(state.subjects).forEach(g => { if(state.subjects[g]) sel.innerHTML += `<option>${state.subjects[g].n}</option>`; });
     }
 
-    function renderAfter() {
-        const div = document.getElementById('after-school-display');
-        div.innerHTML = '';
-        state.after.forEach(a => {
-            const el = document.createElement('div'); el.className = 'after-school-info';
-            el.innerHTML = `<span class="after-school-del" onclick="delAfter(${a.id})">×</span><b>${a.name}</b> [${a.room}]<br>${a.days.join(',')}`;
-            div.appendChild(el);
-        });
-        if(state.after.length < 5) {
-            const addBtn = document.createElement('button'); addBtn.className = 'subject-btn'; addBtn.style = 'width:100%; border:2px dashed var(--text-main); border-radius: 8px; margin-top: 5px;';
-            addBtn.innerText = '+ 추가'; addBtn.onclick = () => document.getElementById('after-modal').classList.remove('hidden');
-            div.appendChild(addBtn);
-        }
-    }
-
-    function applyThemeStyles() {
-        const r = document.documentElement;
-        r.style.setProperty('--bg-canvas', state.theme.bg);
-        r.style.setProperty('--highlight', state.theme.high);
-        r.style.setProperty('--text-main', state.theme.text);
-    }
-
-    // --- Global Window Functions ---
     window.toggleView = () => {
         document.getElementById('weekly-view').classList.toggle('hidden');
         document.getElementById('monthly-view').classList.toggle('hidden');
-        const isWeekly = !document.getElementById('weekly-view').classList.contains('hidden');
-        document.getElementById('view-title').innerText = isWeekly ? '⏰ 주간 시간표' : '🗓️ 월간 달력';
     };
-    window.goToToday = () => { document.getElementById('single-month-select').value = (today.month - 1); renderCalendar(); };
-    window.updatePeriods = () => {
-        const name = document.getElementById('task-sub-select').value;
-        const pSel = document.getElementById('task-period-select');
-        if(!name) { pSel.disabled = true; return; }
-        const valid = [];
-        for(let d=0; d<5; d++) for(let p=0; p<7; p++) if(baseSchedule[p][d]===name || state.subjects[baseSchedule[p][d]]?.n===name) valid.push(`${days[d]}요일 ${p+1}교시`);
-        state.after.filter(a => a.name === name).forEach(a => a.days.forEach(d => valid.push(`${d}요일 8교시`)));
-        pSel.innerHTML = valid.map(v => `<option value="${v}">${v}</option>`).join('') || '<option value="">진행 시간 없음</option>';
-        pSel.disabled = valid.length === 0;
-    };
-    window.saveTask = () => {
-        const sub = document.getElementById('task-sub-select').value;
-        const title = document.getElementById('task-title').value;
-        const date = document.getElementById('task-date').value;
-        const period = document.getElementById('task-period-select').value;
-        if(!sub || !title || !period) return;
-        if(state.editingId) {
-            const idx = state.tasks.findIndex(t => t.id === state.editingId);
-            state.tasks[idx] = { ...state.tasks[idx], sub, title, date, period };
-            state.editingId = null;
-        } else state.tasks.push({ id: Date.now(), sub, title, date, period });
-        saveToCloud(); resetForm();
-    };
-    window.editTask = (id) => {
-        const t = state.tasks.find(x => x.id === id);
-        state.editingId = id;
-        document.getElementById('form-title').innerText = "✏️ 일정 수정";
-        document.getElementById('submit-btn').innerText = "수정 완료";
-        document.getElementById('cancel-btn').classList.remove('hidden');
-        document.getElementById('task-sub-select').value = t.sub;
-        window.updatePeriods();
-        document.getElementById('task-title').value = t.title;
-        document.getElementById('task-date').value = t.date;
-        document.getElementById('task-period-select').value = t.period;
-    };
-    window.deleteTask = (id) => { state.tasks = state.tasks.filter(t => t.id !== id); saveToCloud(); };
-    window.resetForm = () => {
-        document.getElementById('form-title').innerText = "📝 일정 등록";
-        document.getElementById('submit-btn').innerText = "등록하기";
-        document.getElementById('cancel-btn').classList.add('hidden');
-        document.getElementById('task-title').value = ''; document.getElementById('task-date').value = '';
-        document.getElementById('task-sub-select').value = ''; document.getElementById('task-period-select').disabled = true;
-    };
-    window.addAfterSchool = () => {
+
+    window.updateTheme = (type, val) => { state.theme[type] = val; renderAll(); };
+    window.addAfter = () => {
         const name = document.getElementById('after-name').value;
         const room = document.getElementById('after-room').value;
-        const daysGroup = Array.from(document.querySelectorAll('#after-days-group input:checked')).map(i => i.value);
-        if(!name || daysGroup.length === 0) return;
-        state.after.push({id:Date.now(), name, room, days:daysGroup});
-        saveToCloud(); window.closeAfterModal();
-    };
-    window.delAfter = (id) => { state.after = state.after.filter(a => a.id !== id); saveToCloud(); };
-    window.closeAfterModal = () => {
+        state.after.push({name, room});
         document.getElementById('after-modal').classList.add('hidden');
-        document.getElementById('after-name').value = ''; document.getElementById('after-room').value = '';
-        document.querySelectorAll('#after-days-group input').forEach(i => i.checked = false);
+        renderAll();
     };
-    window.updateColorFromPicker = (type, val) => { state.theme[type] = val; applyThemeStyles(); saveToCloud(); };
 </script>
 </body>
 </html>
