@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3D 건축 하중 시뮬레이터</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+
+      <a-box id="roof" position="0 2.1 0" width="4" height="0.2" depth="4" color="#999" opacity="0.8"></a-box>
+
+      <a-sphere id="load" position="1 2.3 1" radius="0.2" color="black"></a-sphere>
+
+      <a-cylinder class="column" position="-1.5 1 -1.5" radius="0.1" height="2" color="blue"></a-cylinder>
+      <a-cylinder class="column" position="1.5 1 -1.5" radius="0.1" height="2" color="blue"></a-cylinder>
+      <a-cylinder class="column" position="-1.5 1 1.5" radius="0.1" height="2" color="blue"></a-cylinder>
+      <a-cylinder class="column" position="1.5 1 1.5" radius="0.1" height="2" color="blue"></a-cylinder>
+
+      <a-entity camera look-controls orbit-controls="target: 0 1 0; minDistance: 5; maxDistance: 15"></a-entity>
+    </a-scene>
+
+    <script>
+      // 실시간 물리 로직 (하중 거리에 따른 색상 변화)
+      const load = document.querySelector('#load');
+      const columns = document.querySelectorAll('.column');
+
+      function updatePhysics() {
+        // 하중의 현재 위치
+        const loadPos = load.object3D.position;
+
+        columns.forEach(col => {
+          const colPos = col.object3D.position;
+          
+          // 하중과 기둥 사이의 거리 계산 (피타고라스 정리)
+          const dist = Math.sqrt(
+            Math.pow(loadPos.x - colPos.x, 2) + 
+            Math.pow(loadPos.z - colPos.z, 2)
+          );
+
+          // 거리가 가까울수록 빨간색, 멀수록 파란색 (Vibe!)
+          // 거리가 1보다 작으면 빨강(위험), 3보다 크면 파랑(안전)
+          const danger = Math.max(0, 1 - (dist / 3)); 
+          const r = Math.floor(danger * 255);
+          const b = 255 - r;
+          
+          col.setAttribute('color', `rgb(${r}, 0, ${b})`);
+        });
+
+        // 하중을 좌우로 왔다갔다 하게 만드는 임시 애니메이션 (테스트용)
+        const time = Date.now() * 0.002;
+        load.object3D.position.x = Math.sin(time) * 1.5;
+        load.object3D.position.z = Math.cos(time) * 1.5;
+
+        requestAnimationFrame(updatePhysics);
+      }
+
+      updatePhysics();
+    </script>
+  </body>
+</html>
