@@ -5,14 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>스마트 플래너 Pro</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
-        .msg { background: white; padding: 20px; border-radius: 10px; border: 2px solid #000; text-align: center; }
+        :root {
+            --bg-canvas: #ffffff;
+            --bg-body: #f8f9fa;
+            --text-main: #212529;
+            --box-border: 2px solid #000000;
+            --highlight: #ffeb3b;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-body);
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center;
+        }
+
+        .main-canvas {
+            width: 100%; max-width: 800px;
+            background: var(--bg-canvas);
+            border: var(--box-border);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 8px 8px 0px #000;
+        }
+
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { margin: 0; font-size: 24px; text-decoration: underline; }
+
+        .section { margin-bottom: 20px; border: 1.5px solid #000; padding: 15px; border-radius: 10px; }
+        .section-title { font-weight: bold; margin-bottom: 10px; display: block; border-bottom: 1px solid #eee; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #000; padding: 10px; text-align: center; font-size: 14px; }
+        th { background: #f0f0f0; }
+
+        .btn { 
+            background: #000; color: #fff; border: none; padding: 10px 15px; 
+            border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;
+        }
+        
+        .input-group { margin-top: 10px; }
+        input { width: calc(100% - 22px); padding: 10px; margin-bottom: 5px; border: 1px solid #000; border-radius: 5px; }
+
+        .task-list { list-style: none; padding: 0; }
+        .task-item { background: var(--highlight); margin-bottom: 5px; padding: 8px; border: 1px solid #000; border-radius: 5px; font-size: 13px; }
     </style>
 </head>
 <body>
-    <div class="msg">
-        <h2>스마트 플래너 로딩 중...</h2>
-        <p>코드를 정상적으로 붙여넣으시면 플래너가 나타납니다.</p>
+
+<div class="main-canvas">
+    <div class="header">
+        <h1>📅 나의 스마트 플래너</h1>
     </div>
+
+    <div class="section">
+        <span class="section-title">⏰ 오늘의 시간표</span>
+        <table>
+            <thead>
+                <tr><th>교시</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>국어</td><td>수학</td><td>영어</td><td>과학</td><td>사회</td></tr>
+                <tr><td>2</td><td>수학</td><td>영어</td><td>과학</td><td>사회</td><td>국어</td></tr>
+                <tr><td>3</td><td>영어</td><td>과학</td><td>사회</td><td>국어</td><td>수학</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <span class="section-title">📝 할 일 추가 (To-Do)</span>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="할 일을 입력하세요 (예: 수학 숙제)">
+            <button class="btn" onclick="addTask()">등록하기</button>
+        </div>
+        <ul id="taskList" class="task-list">
+            </ul>
+    </div>
+</div>
+
+<script>
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const list = document.getElementById('taskList');
+        
+        if (input.value.trim() === '') return;
+
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        li.innerText = `📌 ${input.value}`;
+        li.onclick = function() { this.remove(); }; // 클릭하면 삭제
+        
+        list.appendChild(li);
+        input.value = '';
+    }
+</script>
+
 </body>
 </html>
